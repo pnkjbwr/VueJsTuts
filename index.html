@@ -6,18 +6,27 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    
+    <div class="nav-bar"></div>
     <div id="app">
-        <h1>{{header}}</h1>
-        <input type="text" v-model="header">
+
+        <div class="product">
+            <div class="product-image">
+                <img v-bind:src="image">
+            </div>
+            <div class="product-info">
+                <h1>{{product}}</h1>
+            </div>
+        </div>
+
     </div>
 
     <script src="https://unpkg.com/vue"></script>
     <script>
-        new Vue({
+        var shoppingList = new Vue({
             el: '#app',
             data: {
-                header: 'Yeh Vue is Ready'
+                product: 'Socks',
+                image: './assets/imgs/vmSocks-green-onWhite.jpg'
             }
         });
     </script>
