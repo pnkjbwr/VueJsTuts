@@ -26,9 +26,23 @@
                 <p v-else-if="inventory > 0 && inventory <= 10">Almost Sold Out</p>
                 <p v-else>Out Stock</p>
 
+                <ul>
+                    <li v-for="detail in details">{{ detail }}</li>
+                </ul>
+
+                <div v-for="variant in variants" :key="variant.variantId">
+                    <p @mouseover="updateProdImage(variant.variantImage)">{{variant.variantColor}}</p>
+                </div>
+
                 <!-- If Else -->
-                <button v-if="inStock" class="btn btn-success">Buy Now</button>
+                <button v-if="inStock" class="btn btn-success" v-on:click="addToCart">Add to Cart</button>
                 <button v-else class="btn btn-danger" disabled>Sold Out</button>
+
+                <!-- Showing Cart Values -->
+                <div class="cart">
+                    <p>Cart ({{cart}})</p>
+                </div>
+
 
                 <hr>
                 <h4>Demo of If Conditional Rendering</h4>
@@ -49,6 +63,36 @@
                 image: './assets/imgs/vmSocks-green-onWhite.jpg',
                 inStock: true,
                 inventory: 100,
+                details: ["80% Cotton","20% Polyester","Gender-Neutral"],
+                variants: [
+                    {
+                        variantId: 2234,
+                        variantColor: "green",
+                        variantImage: './assets/imgs/vmSocks-green-onWhite.jpg',
+                    },
+                    {
+                        variantId: 2235,
+                        variantColor: "blue",
+                        variantImage: './assets/imgs/vmSocks-blue-onWhite.jpg',
+                    },
+                ],
+                cart : 0,
+
+
+            },
+
+            methods:{
+
+                //1st style of Declaring Method
+                //This Method will Update Cart Value
+                addToCart: function() {
+                    this.cart +=1
+                },
+                //2nd style of Declaring Method
+                //This Method will Update Image Value
+                updateProdImage(variantImage) {
+                    this.image = variantImage
+                },
             }
         });
     </script>
