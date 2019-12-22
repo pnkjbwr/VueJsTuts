@@ -30,6 +30,7 @@
                     <li v-for="detail in details">{{ detail }}</li>
                 </ul>
 
+                <p style="font-weight: bold;">Mouse Over Event</p>
                 <div v-for="variant in variants" :key="variant.variantId">
                     <p @mouseover="updateProdImage(variant.variantImage)">{{variant.variantColor}}</p>
                 </div>
